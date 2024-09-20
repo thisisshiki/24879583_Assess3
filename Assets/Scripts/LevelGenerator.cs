@@ -1,14 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class LevelGenerator : MonoBehaviour
 {
-    // Reference to your sprites as GameObjects (assign these in the Unity Inspector)
-    public GameObject[] levelPieces; // 0 - Empty, 1 - Outside Corner, 2 - Outside Wall, etc.
-    public Camera mainCamera;
+    // Reference to the Tilemap where the level will be generated
+    public Tilemap levelTilemap;
 
-    int[,] levelMap = {
+    // References to the tiles corresponding to the level pieces
+    public Tile outsideCornerTile;   // Tile for value 1
+    public Tile outsideWallTile;     // Tile for value 2
+    public Tile insideCornerTile;    // Tile for value 3
+    public Tile insideWallTile;      // Tile for value 4
+    public Tile standardPelletTile;  // Tile for value 5
+    public Tile powerPelletTile;     // Tile for value 6
+    public Tile tJunctionTile;       // Tile for value 7
+
+    // The level layout array
+    private int[,] levelMap =
+    {
         {1,2,2,2,2,2,2,2,2,2,2,2,2,7},
         {2,5,5,5,5,5,5,5,5,5,5,5,5,4},
         {2,5,3,4,4,3,5,3,4,4,4,3,5,4},
@@ -26,125 +35,95 @@ public class LevelGenerator : MonoBehaviour
         {0,0,0,0,0,0,5,0,0,0,4,0,0,0},
     };
 
-    // Start is called before the first frame update
     void Start()
     {
-        // Delete existing level (if needed)
-        ClearExistingLevel();
+        // Clear existing tiles in the Tilemap
+        levelTilemap.ClearAllTiles();
 
-        // Generate the level based on levelMap
+        // Generate the top-left quadrant of the level
         GenerateLevel();
 
-        // Mirror level (horizontally, vertically, and both)
-        MirrorLevel();
-
-        // Adjust camera to fit the level
-        AdjustCamera();
-    }
-
-    void ClearExistingLevel()
-    {
-        // Delete any existing game objects in the scene (for example, Level 01)
-        GameObject[] existingLevelPieces = GameObject.FindGameObjectsWithTag("LevelPiece");
-        foreach (GameObject piece in existingLevelPieces)
-        {
-            Destroy(piece);
-        }
-    }
-
-    void GenerateLevel()
-    {
-        for (int y = 0; y < levelMap.GetLength(0); y++)
-        {
-            for (int x = 0; x < levelMap.GetLength(1); x++)
-            {
-                int pieceType = levelMap[y, x];
-                if (pieceType != 0) // 0 is empty, so we skip it
-                {
-                    Vector3 position = new Vector3(x, -y, 0); // Negative y because Unity's y-axis increases upwards
-                    GameObject piece = Instantiate(levelPieces[pieceType], position, Quaternion.identity);
-                    piece.tag = "LevelPiece"; // Set tag to help with cleanup later
-
-                    // Rotate the piece if necessary (you'll need to implement rotation logic based on surroundings)
-                    RotatePiece(x, y, piece);
-                }
-            }
-        }
-    }
-
-    void RotatePiece(int x, int y, GameObject piece)
-    {
-        // Rotation logic: Check the neighbors and decide how the piece should be rotated.
-        // Example: You can analyze the surrounding levelMap values (up, down, left, right) to determine the angle.
-        
-        // Placeholder for rotation logic:
-        // - If piece is a wall, rotate to align with neighbors
-        // - If piece is a corner, rotate to match the direction
-
-        // Example:
-        if (levelMap[y, x] == 1) // Outside corner
-        {
-            // Rotate based on surrounding pieces (this is just an example)
-            if (x > 0 && y > 0 && levelMap[y - 1, x] != 0 && levelMap[y, x - 1] != 0)
-            {
-                piece.transform.Rotate(0, 0, 90); // Rotate to align with walls
-            }
-        }
-    }
-
-    void MirrorLevel()
-    {
-        // Horizontal mirror (flip along y-axis)
+        // Mirror horizontally and vertically to complete the level
         MirrorHorizontally();
-
-        // Vertical mirror (flip along x-axis)
         MirrorVertically();
-
-        // Horizontal and vertical mirror
-        MirrorHorizontallyAndVertically();
     }
 
-    void MirrorHorizontally()
+    // Generate the top-left quadrant of the level
+    private void GenerateLevel()
     {
-        // Loop through the 2D array and mirror the pieces horizontally
-        for (int y = 0; y < levelMap.GetLength(0); y++)
+        int width = levelMap.GetLength(1);
+        int height = levelMap.GetLength(0);
+
+        for (int y = 0; y < height; y++)
         {
-            for (int x = 0; x < levelMap.GetLength(1); x++)
+            for (int x = 0; x < width; x++)
             {
-                // Skip the bottom row for vertical symmetry
-                if (y < levelMap.GetLength(0) - 1)
-                {
-                    Vector3 position = new Vector3(x, -y, 0); 
-                    Vector3 mirrorPos = new Vector3(x, -levelMap.GetLength(0) + y, 0);
-                    Instantiate(levelPieces[levelMap[y, x]], mirrorPos, Quaternion.identity);
-                }
+                PlaceTile(x, y, levelMap[y, x]);
             }
         }
     }
 
-    void MirrorVertically()
+    // Place a tile in the Tilemap based on the level map value
+    private void PlaceTile(int x, int y, int tileType)
     {
-        // Loop through the 2D array and mirror the pieces vertically
-        // Implement similar to horizontal mirroring
-        
+        Tile tile = GetTileForType(tileType);
+        if (tile == null) return;
+
+        // Set the tile at the correct position in the Tilemap
+        levelTilemap.SetTile(new Vector3Int(x, -y, 0), tile);
     }
 
-    void MirrorHorizontallyAndVertically()
+    // Get the corresponding Tile for each level map value
+    private Tile GetTileForType(int type)
     {
-        // Loop through the 2D array and mirror both horizontally and vertically
-        // Implement combining the two mirror methods
+        switch (type)
+        {
+            case 1: return outsideCornerTile;
+            case 2: return outsideWallTile;
+            case 3: return insideCornerTile;
+            case 4: return insideWallTile;
+            case 5: return standardPelletTile;
+            case 6: return powerPelletTile;
+            case 7: return tJunctionTile;
+            default: return null;
+        }
     }
 
-    void AdjustCamera()
+    // Mirror the generated tiles horizontally
+    private void MirrorHorizontally()
     {
-        // Adjust the camera size and position based on the level size
-        float mapWidth = levelMap.GetLength(1);
-        float mapHeight = levelMap.GetLength(0);
+        Vector3Int size = levelTilemap.size;
+        BoundsInt bounds = levelTilemap.cellBounds;
 
-        // Set camera size to fit the entire level
-        mainCamera.orthographicSize = Mathf.Max(mapWidth, mapHeight) / 2f;
+        foreach (Vector3Int pos in bounds.allPositionsWithin)
+        {
+            if (!levelTilemap.HasTile(pos)) continue;
 
-        // Center the camera on the level
-        mainCamera.transform.position = new Vector3(mapWidth / 2f, -mapHeight / 2f, -10f);
+            // Get the tile at the current position
+            TileBase tile = levelTilemap.GetTile(pos);
+            Vector3Int mirrorPos = new Vector3Int(-pos.x - 1, pos.y, pos.z);
+            
+            // Place the mirrored tile
+            levelTilemap.SetTile(mirrorPos, tile);
+        }
+    }
+
+    // Mirror the generated tiles vertically
+    private void MirrorVertically()
+    {
+        Vector3Int size = levelTilemap.size;
+        BoundsInt bounds = levelTilemap.cellBounds;
+
+        foreach (Vector3Int pos in bounds.allPositionsWithin)
+        {
+            if (!levelTilemap.HasTile(pos)) continue;
+
+            // Get the tile at the current position
+            TileBase tile = levelTilemap.GetTile(pos);
+            Vector3Int mirrorPos = new Vector3Int(pos.x, -pos.y - 1, pos.z);
+            
+            // Place the mirrored tile
+            levelTilemap.SetTile(mirrorPos, tile);
+        }
     }
 }

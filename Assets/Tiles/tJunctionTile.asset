@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: outside_wall
+  m_Name: tJunctionTile
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 5772943902156874981, guid: 522a8c3fd26bbf9479fbe24ca05cb240, type: 3}
+  m_Sprite: {fileID: -78748845, guid: 5bc2e31b4d084fb4ea346e2096f084ce, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
