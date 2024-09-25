@@ -1,74 +1,83 @@
 using UnityEngine;
 
-public class PacManMovement : MonoBehaviour
+public class PacmanMovement : MonoBehaviour
 {
-    public float speed = 2f; // Movement speed
-    public Transform[] waypoints; // Array of waypoints defining the path
-    private int currentWaypointIndex = 0; // Current waypoint Pac-Man is moving towards
-    private Animator animator; // Animator component for movement animation
-    private AudioSource audioSource; // AudioSource component for movement sound
+    public Transform pacman;
+    public float speed = 2.0f;
+    public AudioSource movementAudioSource;
+    public Animator pacmanAnimator;
+
+    // Define positions of the four corners
+    private Vector3 pointA;
+    private Vector3 pointB;
+    private Vector3 pointC;
+    private Vector3 pointD;
+    private Vector3 targetPosition;
+    
+    private bool isMoving = false;
 
     void Start()
     {
-        animator = GetComponent<Animator>(); // Get the Animator component
-        audioSource = GetComponent<AudioSource>(); // Get the AudioSource component
-        PlayMovementAnimationAndSound(); // Play animation and sound initially
+        // Initialize positions of the four corners
+        pointA = new Vector3(-4.5f, 1.5f, 0);  // Top-left corner
+        pointB = new Vector3(0.5f, 1.5f, 0);   // Top-right corner
+        pointC = new Vector3(0.5f, -2.5f, 0);  // Bottom-right corner
+        pointD = new Vector3(-4.5f, -2.5f, 0); // Bottom-left corner
+        
+        // Set initial target position to point A
+        targetPosition = pointB;
+
+        // Start movement
+        MoveToNextPoint();
     }
 
-    void Update()
+    void MoveToNextPoint()
     {
-        MovePacMan(); // Handle movement each frame
+        pacmanAnimator.SetBool("isMoving", true);
+        movementAudioSource.Play();
+
+        isMoving = true;
+
+        // Start the tweening coroutine
+        StartCoroutine(MovePacman());
     }
 
-    private void MovePacMan()
+    System.Collections.IEnumerator MovePacman()
     {
-        if (waypoints.Length == 0) return; // Exit if no waypoints are set
+        Vector3 startPosition = pacman.position;
+        float journeyLength = Vector3.Distance(startPosition, targetPosition);
+        float startTime = Time.time;
 
-        // Get the target waypoint
-        Transform targetWaypoint = waypoints[currentWaypointIndex];
-        // Calculate the direction and movement step
-        Vector3 direction = (targetWaypoint.position - transform.position).normalized;
-        float step = speed * Time.deltaTime;
-
-        // Move Pac-Man towards the current waypoint
-        transform.position = Vector3.MoveTowards(transform.position, targetWaypoint.position, step);
-
-        // Check if Pac-Man has reached the target waypoint
-        if (Vector3.Distance(transform.position, targetWaypoint.position) < 0.1f)
+        while (Vector3.Distance(pacman.position, targetPosition) > 0.01f)
         {
-            // Move to the next waypoint, looping back to the start if needed
-            currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length;
+            // Calculate the distance covered based on time
+            float distCovered = (Time.time - startTime) * speed;
+            float fractionOfJourney = distCovered / journeyLength;
+
+            // Interpolate position
+            pacman.position = Vector3.Lerp(startPosition, targetPosition, fractionOfJourney);
+
+            yield return null;
         }
 
-        // Set Pac-Man's orientation to face the movement direction
-        SetPacManRotation(direction);
-    }
+        // Ensure the final position is set to the target position
+        pacman.position = targetPosition;
 
-    private void SetPacManRotation(Vector3 direction)
-    {
-        // Set the rotation based on the movement direction
-        if (direction.x > 0)
-            transform.rotation = Quaternion.Euler(0, 0, 0); // Face right
-        else if (direction.x < 0)
-            transform.rotation = Quaternion.Euler(0, 180, 0); // Face left
-        else if (direction.y > 0)
-            transform.rotation = Quaternion.Euler(0, 0, 90); // Face up
-        else if (direction.y < 0)
-            transform.rotation = Quaternion.Euler(0, 0, -90); // Face down
-    }
+        // Stop audio and animation when Pac-Man reaches the target
+        pacmanAnimator.SetBool("isMoving", false);
+        movementAudioSource.Stop();
 
-    private void PlayMovementAnimationAndSound()
-    {
-        // Play movement animation if Animator is assigned
-        if (animator != null)
-        {
-            animator.SetBool("isMoving", true); // Assuming you have a bool parameter "isMoving" for the animation
-        }
+        // Decide the next target point to move towards clockwise
+        if (targetPosition == pointB)
+            targetPosition = pointC;
+        else if (targetPosition == pointC)
+            targetPosition = pointD;
+        else if (targetPosition == pointD)
+            targetPosition = pointA;
+        else if (targetPosition == pointA)
+            targetPosition = pointB;
 
-        // Play movement sound if AudioSource is assigned
-        if (audioSource != null && !audioSource.isPlaying)
-        {
-            audioSource.Play(); // Play the audio clip assigned to the AudioSource
-        }
+        // Call this method to continue the loop
+        MoveToNextPoint();
     }
 }
