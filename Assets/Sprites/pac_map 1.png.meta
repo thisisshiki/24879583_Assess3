@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: 5bc2e31b4d084fb4ea346e2096f084ce
+guid: fb35f00c872172f4e8b206823367cb8f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5375320875239372667
-    second: pac_wall_0
+      213: 2612874573391475178
+    second: pac_map 1_0
+  - first:
+      213: 7481871978177909745
+    second: pac_map 1_1
+  - first:
+      213: -7572735097779237702
+    second: pac_map 1_2
+  - first:
+      213: -6383493741052136279
+    second: pac_map 1_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +46,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -47,13 +56,13 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
-  spriteExtrude: 0
+  spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 0
+  spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -100,7 +109,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: emptylTile
+      name: pac_map 1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -108,20 +117,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5888d95c4260765b0800000000000000
-      internalID: -5375320875239372667
+      spriteID: 4d23bac1f5b118d458a914068a8da35e
+      internalID: -1906385478
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: outsideCornerTile
+      name: pac_map 1_1
       rect:
         serializedVersion: 2
         x: 32
@@ -129,20 +138,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b4ca94b65de33b84e886a6e5871e5f36
-      internalID: -362673196
+      spriteID: 9417380ee53079a4dabf798cffe8a39d
+      internalID: 304904613
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: outsideWallTile
+      name: pac_map 1_2
       rect:
         serializedVersion: 2
         x: 0
@@ -150,20 +159,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7ef90b3ec67638a4db8cd533358f57fd
-      internalID: -1395130099
+      spriteID: 8145eac06e3f36644b21b6fe2672fb25
+      internalID: -2093783000
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: insideCornerTile
+      name: pac_map 1_3
       rect:
         serializedVersion: 2
         x: 32
@@ -171,20 +180,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ca761d6ed6fe9b04690db60fae478d68
-      internalID: 147612005
+      spriteID: 8b9feb174f6dec143a2e9e854d485d61
+      internalID: -1424348985
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: insideWallTile
+      name: pac_map 1_4
       rect:
         serializedVersion: 2
         x: 0
@@ -192,20 +201,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6cacbb9ea110352428c7797c8c5e9cfb
-      internalID: 1729832710
+      spriteID: ccc17448b1983a1468e922676af44500
+      internalID: 1769864159
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tJunctionTile
+      name: pac_map 1_5
       rect:
         serializedVersion: 2
         x: 32
@@ -213,14 +222,14 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e89aa4b0240d8784986aa859a545ccfe
-      internalID: -78748845
+      spriteID: 52652a13e2f351a488e9793076eef2f2
+      internalID: -2024926360
       vertices: []
       indices: 
       edges: []
@@ -228,7 +237,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 42da29458c481f741a09d0e8d06546e5
+    spriteID: 2c4431f1fe5397c418cacb28da9bc8d2
     internalID: 0
     vertices: []
     indices: 
@@ -236,12 +245,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      emptylTile: -5375320875239372667
-      insideCornerTile: 147612005
-      insideWallTile: 1729832710
-      outsideCornerTile: -362673196
-      outsideWallTile: -1395130099
-      tJunctionTile: -78748845
+      pac_map 1_0: -1906385478
+      pac_map 1_1: 304904613
+      pac_map 1_2: -2093783000
+      pac_map 1_3: -1424348985
+      pac_map 1_4: 1769864159
+      pac_map 1_5: -2024926360
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

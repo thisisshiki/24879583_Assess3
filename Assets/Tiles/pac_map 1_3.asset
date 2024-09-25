@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: standardPelletTile 1
+  m_Name: pac_map 1_3
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 1291759857023825231, guid: 469f1c2301ab26741bed398dc1f2c519, type: 3}
+  m_Sprite: {fileID: -1424348985, guid: fb35f00c872172f4e8b206823367cb8f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
