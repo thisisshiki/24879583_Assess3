@@ -2709,7 +2709,6 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
-  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2791,26 +2790,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &519420033
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519420028}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a160d838ff8b4b4693ac20007e008c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_AssetsPPU: 128
-  m_RefResolutionX: 949
-  m_RefResolutionY: 903
-  m_UpscaleRT: 1
-  m_PixelSnapping: 0
-  m_CropFrameX: 1
-  m_CropFrameY: 1
-  m_StretchFill: 1
 --- !u!1001 &556459254
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2867,7 +2846,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8437176350755377713, guid: 1dd57d3f8f7e74e4c9747ef53335e7d1, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -3040,7 +3020,7 @@ GameObject:
   - component: {fileID: 1131701595}
   - component: {fileID: 1131701597}
   - component: {fileID: 1131701596}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Map
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7533,7 +7513,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1273215037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7546,14 +7526,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8e5542f9c4840c4f9f7c864d110a666, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelTilemap: {fileID: 0}
-  outsideCornerTile: {fileID: 11400000, guid: 6f5d7003fa48070419bf6c68c9b14bdc, type: 2}
-  outsideWallTile: {fileID: 11400000, guid: 54c00cbac6c3e1e4e8fca1195ba34dc0, type: 2}
-  insideCornerTile: {fileID: 11400000, guid: ebb06f7fc1271b245b9439edc0f51ec6, type: 2}
-  insideWallTile: {fileID: 11400000, guid: 54f36a627ac30a04393befe8610b67bc, type: 2}
-  standardPelletTile: {fileID: 11400000, guid: df02b4a7594706e4da9f5ca8a37d08b3, type: 2}
-  powerPelletTile: {fileID: 11400000, guid: f4d995abf64af8b428513a1f03f7b5d3, type: 2}
-  tJunctionTile: {fileID: 11400000, guid: cc17b58d8f0c90241995c83dceeaebe9, type: 2}
+  tilePrefabs:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  tileSize: {x: 1, y: 1}
+  gameCamera: {fileID: 519420031}
 --- !u!4 &1273215038
 Transform:
   m_ObjectHideFlags: 0
@@ -7563,7 +7546,7 @@ Transform:
   m_GameObject: {fileID: 1273215036}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.0545852, y: -1.4757136, z: 0.0075759725}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7653,7 +7636,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 10
   m_Sprite: {fileID: 4506194865649100007, guid: 43acfd4d13df2794497123db521f0cc0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -8150,13 +8133,13 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 519420032}
   - {fileID: 54028892}
   - {fileID: 1973457371}
-  - {fileID: 519420032}
   - {fileID: 877931915}
-  - {fileID: 1879776509}
-  - {fileID: 1762256606}
   - {fileID: 1273215038}
+  - {fileID: 1762256606}
+  - {fileID: 1879776509}
   - {fileID: 633828245}
   - {fileID: 37286178}
   - {fileID: 556459254}

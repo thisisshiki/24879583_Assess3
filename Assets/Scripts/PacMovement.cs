@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 public class PacmanMovement : MonoBehaviour
@@ -13,8 +14,6 @@ public class PacmanMovement : MonoBehaviour
     private Vector3 pointC;
     private Vector3 pointD;
     private Vector3 targetPosition;
-    
-    private bool isMoving = false;
 
     void Start()
     {
@@ -33,13 +32,35 @@ public class PacmanMovement : MonoBehaviour
 
     void MoveToNextPoint()
     {
+        // Set the direction parameter based on the target position
+        SetDirection(targetPosition);
+
         pacmanAnimator.SetBool("isMoving", true);
         movementAudioSource.Play();
 
-        isMoving = true;
-
         // Start the tweening coroutine
         StartCoroutine(MovePacman());
+    }
+
+    void SetDirection(Vector3 target)
+    {
+        Vector3 direction = target - pacman.position;
+        if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
+        {
+            // Horizontal movement
+            if (direction.x > 0)
+                pacmanAnimator.SetInteger("direction", 1); // Right
+            else
+                pacmanAnimator.SetInteger("direction", 3); // Left
+        }
+        else
+        {
+            // Vertical movement
+            if (direction.y > 0)
+                pacmanAnimator.SetInteger("direction", 0); // Up
+            else
+                pacmanAnimator.SetInteger("direction", 2); // Down
+        }
     }
 
     System.Collections.IEnumerator MovePacman()
