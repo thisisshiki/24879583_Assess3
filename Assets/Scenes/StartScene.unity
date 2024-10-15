@@ -1121,7 +1121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Cherry: {fileID: 1413328414}
   Title: {fileID: 1441701573}
-  radius: 130
+  radius: 120
   speed: 2
 --- !u!1 &1025295350
 GameObject:
