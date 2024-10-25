@@ -356,6 +356,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ghost_blue
       objectReference: {fileID: 0}
+    - target: {fileID: 5033568587144856896, guid: 05f36157c6c8c6d48bfe706d0544cab4, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: 1ff4b0ce6d4b534468d73dc9a9674428, type: 2}
     - target: {fileID: 8000430380720854166, guid: 05f36157c6c8c6d48bfe706d0544cab4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 9.76
@@ -1614,7 +1618,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6870186503546631703, guid: 6cd3ed3bae90c0c46948912b1770af0c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 948213625}
   m_SourcePrefab: {fileID: 100100000, guid: 6cd3ed3bae90c0c46948912b1770af0c, type: 3}
 --- !u!1001 &895592156
 PrefabInstance:
@@ -1673,6 +1680,24 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de6b5db39cc4a614584cfd5339e54091, type: 3}
+--- !u!1 &948213619 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6870186503546631703, guid: 6cd3ed3bae90c0c46948912b1770af0c, type: 3}
+  m_PrefabInstance: {fileID: 892891417}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &948213625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 948213619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 264d479e69de0324dadd521027289119, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
 --- !u!1 &1020377919
 GameObject:
   m_ObjectHideFlags: 0
@@ -1823,6 +1848,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4078617952597762536, guid: eebfb487c2510c74fb24856448a3e40d, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: 06d8d46fcd4a1bc4fa12a583364e07d5, type: 2}
     - target: {fileID: 5523394023046169893, guid: eebfb487c2510c74fb24856448a3e40d, type: 3}
       propertyPath: m_Name
       value: ghost_pink
@@ -2005,6 +2034,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ghost_green
       objectReference: {fileID: 0}
+    - target: {fileID: 6392675796003929819, guid: 1dd57d3f8f7e74e4c9747ef53335e7d1, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: a228e88cbb2665f4486e3eccf66c5984, type: 2}
     - target: {fileID: 8244602425013743373, guid: 1dd57d3f8f7e74e4c9747ef53335e7d1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8.14
