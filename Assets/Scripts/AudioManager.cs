@@ -10,11 +10,9 @@ public class AudioManager : MonoBehaviour
     {
         if (introAudioSource != null && introAudioSource.clip != null)
         {
-            Debug.Log("Playing intro audio...");
             introAudioSource.Play();
             introAudioSource.loop = false;
-
-            Debug.Log("Intro audio length: " + introAudioSource.clip.length);
+            
             Invoke("PlayNormalBackgroundMusic", introAudioSource.clip.length);
         }
         else
